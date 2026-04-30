@@ -1,47 +1,57 @@
-// 價格表
+    /* 價格表 */
     const priceData = {
         "double": { // 雙玄關門的尺寸價格
             "100 x 208 cm": {
-                'COE5段鎖+3段暗栓':50500,
-                '提升雙鎖心 (+6000)':56500
+                '非甲級':79500,
+                '甲級':100500
             },
         
             "118 x 208 cm": {
-                'COE5段鎖+3段暗栓':58500,
-                '提升雙鎖心 (+6000)':64500
+                '非甲級':87500,
+                '甲級':108500
             },
         },
 
         "child-mother": { // 子母門的尺寸價格
             "140 x 208 cm": {
-                'COE5段鎖+3段暗栓':76000,
-                '提升雙鎖心 (+6000)':82000
+                '非甲級':119500,
+                '甲級':154000
             },
             "150 x 208 cm": {
-                'COE5段鎖+3段暗栓':84000,
-                '提升雙鎖心 (+6000)':90000
+                '非甲級':131500,                                   
+                '甲級':154000
             },
             "151 x 208 cm": {
-                'COE5段鎖+3段暗栓':98500,
-                '提升雙鎖心 (+6000)':104500
+                '非甲級':155500,
+                '甲級':196000
+            },
+        },
+        "single-out": { // 外門的尺寸價格
+            "100 x 208 cm": {
+                '非甲級':55000
+            },
+            "118 x 208 cm": {
+                '非甲級':63000
             }
         }
     };
                 
 
+    
+
     const typeSelect = document.getElementById('type-select');
     const sizeSelect = document.getElementById('size-select');
-    const lockSelect = document.getElementById('lock-select');
+    const fireSelect = document.getElementById('fire-select');
     const priceSpan = document.getElementById('total-price');
 
-    // 門型改變後 更新尺寸
+    // 門型改變更新尺寸
     typeSelect.onchange = function() {
         const type = this.value;
         const sizes = priceData[type];
 
         // 清空後面選單
         sizeSelect.innerHTML = '<option value="" disabled selected>請選擇尺寸</option>';
-        priceSpan.innerText = "0";  // 重設價格
+        priceSpan.innerText = "0";  // 重設價格顯示
 
         // 把對應的尺寸塞進第二個選單
         for (let size in sizes) {
@@ -53,36 +63,36 @@
         
     };
 
-    // 尺寸改變 更新鎖心
+    // 尺寸改變 更新防火
     sizeSelect.onchange = function() {
         const type = typeSelect.value;
         const size = this.value;
-        const lockOptions = priceData[type][size];
+        const fireOptions = priceData[type][size];
         
-        // 清空鎖心選項
-        lockSelect.innerHTML = '<option value="" disabled selected>請選擇鎖心等級</option>';
+        // 清空舊的防火選項
+        fireSelect.innerHTML = '<option value="" disabled selected>請選擇防火等級</option>';
         priceSpan.innerText = "0"; // 重設價格顯示
 
-        // 取得鎖心選項
-        const locklevels = Object.keys(lockOptions);
+        // 取得所有的防火選項清單
+        const firelevels = Object.keys(fireOptions);
 
         // 產生選項
-        locklevels.forEach(function(level) {
+        firelevels.forEach(function(level) {
             const opt = document.createElement('option');
             opt.value = level;
             opt.innerHTML = level;
-            lockSelect.appendChild(opt);
+            fireSelect.appendChild(opt);
         });
 
     };  
 
 
-    lockSelect.onchange = function() {
+    fireSelect.onchange = function() {
         const type = typeSelect.value;
         const size = sizeSelect.value;
-        const lock = this.value;
+        const fire = this.value;
 
-        const finalPrice = priceData[type][size][lock]
+        const finalPrice = priceData[type][size][fire]
         priceSpan.innerText = finalPrice.toLocaleString();
     };
 
@@ -93,60 +103,39 @@
 // 點擊選單換圖
 // =============
 
-// 1. 建立專屬說明資料庫
+// 1. 建立說明資料庫
 const patternSpecs = {
     "01": [
-        '紅鐵砂色',
-        '外看 / 全開'
+        '外門:A10禪',
+        '內門:卡登(雙面造型)'
     ],
     "02": [
-        '紅鐵砂色',
-        '內看 / 全開'
+        '外門:A7崇山峻嶺',
+        '內門:卡登(雙面造型)'
     ],
     "03": [
-        '深灰砂閃銀色',
-        '門花:F10 三元及第',
-        '外看/全開/開天全開'
-    ],
-    "03-1": [
-        '黑砂色',
-        '門花:F1 3x7',
-        '外看/全開'
-    ],
-    "03-2": [
-        '淺灰砂色',
-        '門花:F9 世學經論',
-        '外看/全開'
-    ],
-    "03-3": [
-        '咖啡砂閃銀',
-        '門花:F8 歡天喜地',
-        '外看/全開'
+        '外門:A11百事大吉',
+        '內門:卡登(雙面造型)'
     ],
     "05": [
-        '黑砂色',
-        '門花:F9 世學經論',
-        '外看/全關'
+        '外門:E6 GB',
+        '內門:卡登(雙面造型)'
     ],
-    "05-1": [
-        '米白垂紋色',
-        '門花:F1 3X7',
-        '外看/全關'
+    "06": [
+        '外門:E1生生不息',
+        '內門:卡登(雙面造型)'
     ],
-    "05-2": [
-        '咖啡砂閃銀色',
-        '門花:F7 生生不息',
-        '外看/全關'
+    "07": [
+        '外門:E5三元及第',
+        '內門:卡登(雙面造型)'
     ],
-    "05-3": [
-        '深灰砂閃銀色',
-        '門花:F10 三元及第',
-        '外看/全開'
+    "08": [
+        '外門:A2 三星拱照',
+        '內門:卡登(雙面造型)'
     ],
-    "05-4": [
-        '紅鐵砂色',
-        '門花:F8 歡天喜地',
-        '外看/全開'
+    "09": [
+        '外門:E3世學經論',
+        '內門:卡登(雙面造型)'
     ],
 };
 
@@ -158,13 +147,13 @@ const dynamicFeatures = document.getElementById('dynamic-features');
 const patternBtns = document.querySelectorAll('.pattern-btn');
 
 function updateVisual() {
-    // 1. 更新型號文字
+    // 更新型號文字
     patternNameDisplay.innerText = currentPattern;    
     
-    // 2. 拼湊檔名並換掉圖片
-    doorImage.src = `樣品圖/百葉通風/${currentPattern}.jpg`;
+    // 拼湊檔名並換掉圖片
+    doorImage.src = `../樣品圖/雙視窗/${currentPattern}.jpg`;
 
-    // 3. 更新專屬說明文字
+    // 更新專屬說明文字
     if (patternSpecs[currentPattern]) {
         dynamicFeatures.innerHTML = ""; // 先清空舊的項目
         patternSpecs[currentPattern].forEach(text => {

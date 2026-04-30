@@ -1,50 +1,31 @@
-    /* 價格表 */
+    // 價格表
     const priceData = {
-        "double": { // 雙玄關門的尺寸價格
-            "100 x 208 cm": {
-                '非甲級':79500,
-                '甲級':100500
-            },
-        
-            "118 x 208 cm": {
-                '非甲級':87500,
-                '甲級':108500
-            },
+        "single": { // 單門的尺寸價格
+            "100 x 223 cm": 208000,
+            "100 x 245 cm": 218000,
+            "120 x 223 cm": 234000,
+            "120 x 245 cm": 244000
         },
 
         "child-mother": { // 子母門的尺寸價格
-            "140 x 208 cm": {
-                '非甲級':119500,
-                '甲級':154000
-            },
-            "150 x 208 cm": {
-                '非甲級':131500,                                   
-                '甲級':154000
-            },
-            "151 x 208 cm": {
-                '非甲級':155500,
-                '甲級':196000
-            },
+            "150 x 223 cm": 322000,
+            "150 x 245 cm": 338000
         },
-        "single-out": { // 外門的尺寸價格
-            "100 x 208 cm": {
-                '非甲級':55000
-            },
-            "118 x 208 cm": {
-                '非甲級':63000
-            }
-        }
-    };
-                
+
+        "double": { // 雙開門的尺寸價格
+            "240 x 223 cm": 398000,
+            "240 x 245 cm": 418000
+        },
+
+        };
 
     
 
     const typeSelect = document.getElementById('type-select');
     const sizeSelect = document.getElementById('size-select');
-    const fireSelect = document.getElementById('fire-select');
     const priceSpan = document.getElementById('total-price');
 
-    // 門型改變更新尺寸
+    // 門型改變後 更新尺寸
     typeSelect.onchange = function() {
         const type = this.value;
         const sizes = priceData[type];
@@ -63,36 +44,11 @@
         
     };
 
-    // 尺寸改變 更新防火
     sizeSelect.onchange = function() {
         const type = typeSelect.value;
         const size = this.value;
-        const fireOptions = priceData[type][size];
-        
-        // 清空舊的防火選項
-        fireSelect.innerHTML = '<option value="" disabled selected>請選擇防火等級</option>';
-        priceSpan.innerText = "0"; // 重設價格顯示
 
-        // 取得所有的防火選項清單
-        const firelevels = Object.keys(fireOptions);
-
-        // 產生選項
-        firelevels.forEach(function(level) {
-            const opt = document.createElement('option');
-            opt.value = level;
-            opt.innerHTML = level;
-            fireSelect.appendChild(opt);
-        });
-
-    };  
-
-
-    fireSelect.onchange = function() {
-        const type = typeSelect.value;
-        const size = sizeSelect.value;
-        const fire = this.value;
-
-        const finalPrice = priceData[type][size][fire]
+        const finalPrice = priceData[type][size]
         priceSpan.innerText = finalPrice.toLocaleString();
     };
 
@@ -103,39 +59,43 @@
 // 點擊選單換圖
 // =============
 
-// 1. 建立說明資料庫
+// 1. 建立專屬說明資料庫
 const patternSpecs = {
     "01": [
-        '外門:A10禪',
-        '內門:卡登(雙面造型)'
+        '純白&香檳金'
+    ],
+    "01-1": [
+        '紅古銅手工漆'
+    ],
+    "01-2": [
+        '紅鐵砂色'
     ],
     "02": [
-        '外門:A7崇山峻嶺',
-        '內門:卡登(雙面造型)'
+        '黑砂色'
     ],
     "03": [
-        '外門:A11百事大吉',
-        '內門:卡登(雙面造型)'
+        '純白色'
     ],
     "05": [
-        '外門:E6 GB',
-        '內門:卡登(雙面造型)'
+        '深灰砂閃銀'
     ],
     "06": [
-        '外門:E1生生不息',
-        '內門:卡登(雙面造型)'
+        '黑砂色'
     ],
     "07": [
-        '外門:E5三元及第',
-        '內門:卡登(雙面造型)'
+        '銀古銅手工漆'
     ],
     "08": [
-        '外門:A2 三星拱照',
-        '內門:卡登(雙面造型)'
+        '灰砂色'
     ],
     "09": [
-        '外門:E3世學經論',
-        '內門:卡登(雙面造型)'
+        '紅鐵砂色'
+    ],
+    "10": [
+        '咖啡砂閃銀'
+    ],
+    "11": [
+        '黑砂色'
     ],
 };
 
@@ -151,7 +111,7 @@ function updateVisual() {
     patternNameDisplay.innerText = currentPattern;    
     
     // 拼湊檔名並換掉圖片
-    doorImage.src = `樣品圖/雙視窗/${currentPattern}.jpg`;
+    doorImage.src = `../樣品圖/羅浮宮浮雕/${currentPattern}.jpg`;
 
     // 更新專屬說明文字
     if (patternSpecs[currentPattern]) {

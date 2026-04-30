@@ -170,7 +170,7 @@ function updateVisual() {
     patternNameDisplay.innerText = currentPattern;    
     
     // 拼湊檔名並換掉圖片
-    doorImage.src = `樣品圖/碳纖防爆門/${currentPattern}.jpg`;
+    doorImage.src = `../樣品圖/碳纖防爆門/${currentPattern}.jpg`;
 
     // 更新專屬說明文字
     if (patternSpecs[currentPattern]) {

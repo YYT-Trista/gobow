@@ -1,35 +1,33 @@
-    //價格表
+// 價格表
     const priceData = {
         "double": { // 雙玄關門的尺寸價格
             "100 x 208 cm": {
-                'COE5段鎖+3段暗栓':66000,
-                '提升雙鎖心 (+6000)':72000
+                'COE5段鎖+3段暗栓':50500,
+                '提升雙鎖心 (+6000)':56500
             },
         
             "118 x 208 cm": {
-                'COE5段鎖+3段暗栓':79200,
-                '提升雙鎖心 (+6000)':85200
+                'COE5段鎖+3段暗栓':58500,
+                '提升雙鎖心 (+6000)':64500
             },
         },
 
         "child-mother": { // 子母門的尺寸價格
             "140 x 208 cm": {
-                'COE5段鎖+3段暗栓':99000,
-                '提升雙鎖心 (+6000)':105000
+                'COE5段鎖+3段暗栓':76000,
+                '提升雙鎖心 (+6000)':82000
             },
             "150 x 208 cm": {
-                'COE5段鎖+3段暗栓':109000,
-                '提升雙鎖心 (+6000)':115000
+                'COE5段鎖+3段暗栓':84000,
+                '提升雙鎖心 (+6000)':90000
             },
             "151 x 208 cm": {
-                'COE5段鎖+3段暗栓':128500,
-                '提升雙鎖心 (+6000)':134500
+                'COE5段鎖+3段暗栓':98500,
+                '提升雙鎖心 (+6000)':104500
             }
         }
     };
                 
-
-    
 
     const typeSelect = document.getElementById('type-select');
     const sizeSelect = document.getElementById('size-select');
@@ -43,7 +41,7 @@
 
         // 清空後面選單
         sizeSelect.innerHTML = '<option value="" disabled selected>請選擇尺寸</option>';
-        priceSpan.innerText = "0";  // 重設價格顯示
+        priceSpan.innerText = "0";  // 重設價格
 
         // 把對應的尺寸塞進第二個選單
         for (let size in sizes) {
@@ -55,20 +53,20 @@
         
     };
 
-    // 尺寸改變後 換鎖心
+    // 尺寸改變 更新鎖心
     sizeSelect.onchange = function() {
         const type = typeSelect.value;
         const size = this.value;
         const lockOptions = priceData[type][size];
         
-        // 清空舊的鎖心選項
+        // 清空鎖心選項
         lockSelect.innerHTML = '<option value="" disabled selected>請選擇鎖心等級</option>';
         priceSpan.innerText = "0"; // 重設價格顯示
 
         // 取得鎖心選項
         const locklevels = Object.keys(lockOptions);
 
-        // 3. 產生選項
+        // 產生選項
         locklevels.forEach(function(level) {
             const opt = document.createElement('option');
             opt.value = level;
@@ -98,35 +96,57 @@
 // 1. 建立專屬說明資料庫
 const patternSpecs = {
     "01": [
-        '門花:F6 五福臨門',
-        '外看 / 開'
+        '紅鐵砂色',
+        '外看 / 全開'
     ],
     "02": [
-        '門花:D3 璀璨',
-        '外看/開'
+        '紅鐵砂色',
+        '內看 / 全開'
     ],
     "03": [
-        '寬板導角',
-        '門花:A11 百事大吉',
-        '內看/開'
+        '深灰砂閃銀色',
+        '門花:F10 三元及第',
+        '外看/全開/開天全開'
+    ],
+    "03-1": [
+        '黑砂色',
+        '門花:F1 3x7',
+        '外看/全開'
+    ],
+    "03-2": [
+        '淺灰砂色',
+        '門花:F9 世學經論',
+        '外看/全開'
+    ],
+    "03-3": [
+        '咖啡砂閃銀',
+        '門花:F8 歡天喜地',
+        '外看/全開'
     ],
     "05": [
-        '精雕 石角(雙面造型)',
-        '門花:A1橫格',
-        '外看/開'
+        '黑砂色',
+        '門花:F9 世學經論',
+        '外看/全關'
     ],
-    "06": [
-        '一體成型精雕 錢幣(雙面造型)',
-        '門花:E7 錢幣',
-        '外看/開'
+    "05-1": [
+        '米白垂紋色',
+        '門花:F1 3X7',
+        '外看/全關'
     ],
-    "07": [
-        '琉璃',
-        '魚躍龍門(單面造型)'
+    "05-2": [
+        '咖啡砂閃銀色',
+        '門花:F7 生生不息',
+        '外看/全關'
     ],
-    "07-1": [
-        '琉璃(外門) ',
-        '魚躍龍門(單面造型)'
+    "05-3": [
+        '深灰砂閃銀色',
+        '門花:F10 三元及第',
+        '外看/全開'
+    ],
+    "05-4": [
+        '紅鐵砂色',
+        '門花:F8 歡天喜地',
+        '外看/全開'
     ],
 };
 
@@ -138,13 +158,13 @@ const dynamicFeatures = document.getElementById('dynamic-features');
 const patternBtns = document.querySelectorAll('.pattern-btn');
 
 function updateVisual() {
-    // 更新型號文字
+    // 1. 更新型號文字
     patternNameDisplay.innerText = currentPattern;    
     
-    // 拼湊檔名並換掉圖片 
-    doorImage.src = `樣品圖/門中門/${currentPattern}.jpg`;
+    // 2. 拼湊檔名並換掉圖片
+    doorImage.src = `../樣品圖/百葉通風/${currentPattern}.jpg`;
 
-    // 更新專屬說明文字
+    // 3. 更新專屬說明文字
     if (patternSpecs[currentPattern]) {
         dynamicFeatures.innerHTML = ""; // 先清空舊的項目
         patternSpecs[currentPattern].forEach(text => {

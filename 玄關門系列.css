@@ -1,0 +1,551 @@
+/*style.css 的部分*/
+/* 從這邊開始 */
+.mainheader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #607892;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.logo h1 {
+    font-weight: 600;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 32px;
+    letter-spacing: 4px;
+    cursor: pointer;
+}
+
+.logo h1:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.menu ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 35px;
+    align-items: center;
+}
+
+.menu > ul > li {
+    position: relative; /* 下拉選單定位基準 */
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.menu > ul > li > a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 450;
+    font-size: 15.5px;
+    letter-spacing: 1.5px;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+    position: relative;
+    display: block;
+}
+
+.menu > ul > li > a:hover {
+    color: #9aa1bd; /* 移上去變成深藍色 */
+}
+
+/* 底線初始狀態 */
+.menu > ul > li > a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    background-color: #9aa1bd;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+/* 滑鼠移上去時底線往兩邊展開 */
+.menu > ul > li > a:hover::after {
+    width: 100%;
+}
+
+
+/* 下拉選單樣式 */
+.dropdown {
+    position: absolute;
+    top: 70px; 
+    left: 50%;
+    transform: translateX(-50%) translateY(15px); 
+    background-color: #ffffff;
+    min-width: 350px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 2000;
+    border-top: 3px solid #9aa1bd; 
+}
+
+/* 滑鼠移到 玄關門系列 顯示選單 */
+.menu li:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); 
+}
+
+/* 下拉選單佈局 */
+.dropdown-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 2px 15px;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-direction: column !important;
+}
+
+.dropdown-grid li {
+    display: block;
+}
+
+.dropdown-grid a {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #415060 !important; /* 下拉選單字變深色 */
+    font-size: 14px !important;
+    font-weight: 430 !important;
+    text-decoration: none;
+    display: block;
+    padding: 4px 5px;
+    display: block;
+    white-space: nowrap; /* 防止字體斷行 */
+}
+
+.dropdown-grid a::after {
+    display: none; /* 下拉選單裡面的小字不需要底線動畫 */
+}
+
+.dropdown-grid a:hover {
+    color: #9aa1bd !important;
+    padding-left: 5px; 
+}
+
+/* style.css 到這邊 ! */
+
+
+
+
+/* 各種系列上面的大圖 */
+/* 設定裝整個大圖區塊的容器 */
+.banner-container {
+  margin-top: 70px;
+  width: 100%; /* 讓容器寬度跟螢幕一樣寬 */
+  position: relative; /* 圖片裡面的文字以這個框框為基礎排版 */
+  overflow: hidden; /* 圖片超出去的話就切掉 */
+}
+
+/* 設定圖片 */
+.banner-image {
+  width: 100%;
+  height: auto; 
+}
+
+/* 讓文字浮在照片上面 */
+.banner-text {
+  position: absolute; /*文字絕對定位*/
+
+  /* 設定文字位置 */
+  top: 45%; 
+  right: 5%;
+  
+  /* 文字垂直置中 */
+  transform: translateY(-50%); 
+  
+  /* 文字樣式 */
+  color: white; 
+  text-align: right; 
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* 字體黑色陰影 */
+}
+
+/* 文字內文大小跟間距 */
+/* 標題 */
+.banner-text h1 {
+  font-size: 3vw; /* 字體大小是螢幕的 3% */
+  margin-bottom: 2vw; /* 字間距 2% */
+}
+/* 內文 */
+.banner-text p {
+  font-size: 1.5vw; 
+  line-height: 1.5;
+}
+
+
+/* 我要放資料的好多格子 */
+/* 左上_基礎款 */
+.left_box_top {
+    background-color: #ffffff; /* 格子顏色 */
+    width: 100%;           
+    height: 680px;
+    box-sizing: border-box; /* 怕 padding 超出格子 */
+    padding: 20px 50px; /* 上下 左右留白 */
+    border-radius: 20px; /* 圓角 */
+    text-align: center; /* 內容置中 */
+    box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.044);
+
+    /* 加入 flex 讓裡面分成左右兩半 因為我一半要放圖片 一半要放樣式選項 */
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 20px;
+}
+
+/* 左上_鋼製壓板門 */
+.left_box_top_cp {
+    background-color: #ffffff; 
+    width: 100%;            
+    height: 615px;
+    box-sizing: border-box;
+    padding: 10px 50px; 
+    border-radius: 20px; 
+    text-align: center; 
+    box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.044);
+
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 20px;
+}
+
+/* 左上_防水防污門 */
+.left_box_top_antidirty {
+    background-color: #ffffff; 
+    width: 100%;           
+    height: 580px;
+    box-sizing: border-box; 
+    padding: 10px 50px; 
+    border-radius: 20px;
+    text-align: center; 
+    box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.044);
+
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 20px;
+}
+
+
+/* 左下_基礎款 */
+.left_box_bottom {
+    margin-top: 5px;
+    background-color: #ffffff; 
+    width: 100%;           
+    box-sizing: border-box; 
+    padding: 20px 50px;
+    border-radius: 20px; 
+    text-align: center; 
+    box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.044);
+    max-height: 365px;    /* 格子最大高度 */
+    overflow-y: auto;     /* 長度超過的話可以變成捲軸滾動的方式 */
+}
+
+/* 左下_羅浮宮浮雕 */
+.left_box_bottom_Louvre {
+    margin-top: 5px;
+    background-color: #ffffff; 
+    width: 100%;            
+    box-sizing: border-box; 
+    padding: 20px 50px; 
+    border-radius: 20px; 
+    text-align: center; 
+    box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.044);
+    max-height: 265px;   
+    overflow-y: auto;    
+}
+
+/* 左下_防水防污 */
+.left_box_bottom_antidirty {
+    margin-top: 5px;
+    background-color: #ffffff; 
+    width: 100%;            
+    box-sizing: border-box; 
+    padding: 20px 50px; 
+    border-radius: 20px; 
+    text-align: center; 
+    box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.044);
+    max-height: 330px;    
+    overflow-y: auto;    
+}
+
+/* 左下_雙玄關雙視窗 */
+.left_box_bottom_double {
+    margin-top: 5px;
+    background-color: #ffffff; 
+    width: 100%;           
+    box-sizing: border-box; 
+    padding: 20px 50px; 
+    border-radius: 20px; 
+    text-align: center; 
+    box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.044);
+    max-height: 300px;   
+    overflow-y: auto;    
+}
+
+/* 左下_鋼製壓板 */
+.left_box_bottom_cp {
+    margin-top: 5px;
+    background-color: #ffffff; 
+    width: 100%;           
+    box-sizing: border-box; 
+    padding: 20px 50px; 
+    border-radius: 20px; 
+    text-align: center; 
+    box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.044);
+    max-height: 330px;    
+    overflow-y: auto;     
+}
+
+.left_box_bottom_wood {
+    margin-top: 5px;
+    background-color: #ffffff; 
+    width: 100%;           
+    box-sizing: border-box; 
+    padding: 20px 50px;
+    border-radius: 20px; 
+    text-align: center; 
+    box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.044);
+    max-height: 395px;    /* 格子最大高度 */
+    overflow-y: auto;     /* 長度超過的話可以變成捲軸滾動的方式 */
+}
+
+
+/* 右邊格子 */
+/* 右上 */
+.right_box_top {
+    background-color: #ffffff; 
+    width: 100%;           
+    box-sizing: border-box; 
+    padding: 10px 40px; 
+    margin-bottom:  30px; ;
+    border-radius: 20px; 
+    text-align: center;
+    box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.044);
+}
+
+/* 右下 */
+.right_box_bottom {
+    margin-top: 5px;
+    background-color: #ffffff; 
+    width: 100%;           
+    box-sizing: border-box; 
+    padding: 10px 40px; 
+    margin-bottom:  30px; ;
+    border-radius: 20px; 
+    text-align: center; 
+    box-shadow: 10px 10px 20px 5px #c1caefd6;
+    max-height: 800px;       
+}
+
+/* 算出估算價格的那個藍色部分 */
+.right_box_inside {
+    margin-top: 5px;
+    background-color: #9bb0f161; 
+    width: 100%;          
+    box-sizing: border-box; 
+    padding: 10px 40px; 
+    margin-bottom:  30px; ;
+    border-radius: 20px; 
+    text-align: center;
+}
+
+
+/*格子裡面的照片*/
+/* AD系列換顏色的照片 */
+.picture {
+    width: 450px;
+    height: 450px;
+    border-radius: 20%; /* 照片圓角 */
+    object-fit: cover; /*照片自動裁切 不會被壓扁*/
+    margin-bottom: 15px;
+    margin-top: auto;
+    margin-bottom: auto;           
+}
+
+/* 其他系列換整張照片的 */
+.picture_antidirty {
+    width: 450px;
+    height: 450px;
+    border-radius: 2%; 
+    object-fit: cover; 
+    margin-top: auto;
+    margin-bottom: auto;           
+}
+
+/* 設定網頁背景 邊界 + 顏色 */
+body{
+    margin: 0;
+    background-color: #f8fafc;
+}
+
+/* 設定左下角的表格 */
+.spec-table {
+    width: 100%;        /* 表格隨我的格子寬度變化 */
+    border-collapse: collapse; /* 邊框合併 不然我表個的橫線會是一段一段的 用這樣就會是一整條直線 */
+
+}
+
+/* 每一格的設定 */
+.spec-table td {
+    padding: 15px;         /* 格子的空白 */
+    border-bottom: 1px solid #eeeeee; /* 表格的線 */
+    text-align: left;      /* 文字靠左 */
+    font-size: 1rem;       /* 字體大小 */
+}
+
+/*  我整個網頁內容區塊的大框框 */
+.content-wrapper {
+    display: flex;          /* 橫向排列 */
+    gap: 30px;              /* 左右兩欄的間隔距離 */
+    max-width: 90%;         /* 最大寬度 不要貼在螢幕邊邊 */
+    margin: 50px auto;      /* 大框框置中 */
+    align-items: flex-start;/* 左右兩邊都要對其上面 不要一高一低之類的 */
+}
+
+/* 左半部 */
+.left-column {
+    flex: 6;                /* 左邊佔6成比例寬度 */
+    display: flex;          /* 彈性排版 */
+    flex-direction: column; /* 裡面要直向上下排 */
+    gap: 30px;              /* 上下格子的間隔距離 */
+}
+
+/* 右半部 */
+.right-column {
+    flex: 4;                /* 右邊佔四成比例寬度 */
+}
+
+/* 🌟 5. 新增：手機版響應式 (RWD) 魔法 */
+@media (max-width: 900px) {
+    .content-wrapper {
+        flex-direction: column; /* 螢幕小於 900px 時，左右排變回上下排 */
+    }
+}
+
+
+
+/*特色*/
+.description {
+    color: #4f5665;
+    line-height: 2; /* 行距 */
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+
+/* 讓下拉選單變成像我格子設定的樣式 不然原本的下拉選單太醜了 */
+.card-select {
+    /* 清除瀏覽器醜醜的預設樣式 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* 設定外觀設定 跟我原本的格子設計幾乎一樣 */
+    width: 100%;             
+    margin-top: 5px;
+    padding: 15px 20px;      
+    background-color: #ffffff;
+    border: 2px solid transparent; /* 預設透明邊框 點擊再變色 */
+    border-radius: 12px;     
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
+
+    /* 文字設定 */
+    font-size: 1rem;
+    color: #334155;         
+    font-family: inherit;    /* 繼承網頁字體 */
+    cursor: pointer;         /* 滑鼠移過去會變成手指圖案 */
+}
+
+/* 點擊選單的效果 */
+.card-select:focus {
+    outline: none; /* 清除點擊時預設的醜外框 */
+    border-color: #cbd5e1; /* 邊框跑出淡淡的灰色 */
+   
+}
+
+/* =========================================
+   色卡與門花按鈕專用樣式
+========================================= */
+.visual-panel {
+    flex: 1;
+    text-align: left;
+}
+.visual-title {
+    color: #3e3f42;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 10px;
+}
+.option-label {
+    color: #4f5665;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+.color-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+.color-circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+    border: 2px solid white; 
+}
+.color-circle.active {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #95a8f1d6; 
+}
+.pattern-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.pattern-btn {
+    padding: 8px 18px;
+    background-color: #f8fafc;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #475569;
+    transition: all 0.2s;
+}
+.pattern-btn:hover { background-color: #e2e8f0; }
+.pattern-btn.active {
+    background-color: #95a8f1d6;
+    border-color: #95a8f1d6;
+    color: white;
+    font-weight: bold;
+}
+.image-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}

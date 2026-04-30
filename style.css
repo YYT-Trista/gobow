@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    padding-top: 70px; 
+    background-color: #f5f5f5; 
+}
+
+.mainheader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #415060;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.logo h1 {
+    font-weight: 600;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 32px;
+    letter-spacing: 4px;
+    cursor: pointer;
+}
+
+.logo h1:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.menu ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 35px;
+    align-items: center;
+}
+
+.menu > ul > li {
+    position: relative; /* 下拉選單定位基準 */
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.menu > ul > li > a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 450;
+    font-size: 15.5px;
+    letter-spacing: 1.5px;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+    position: relative;
+    display: block;
+}
+
+.menu > ul > li > a:hover {
+    color: #9aa1bd; /* 移上去變成深藍色 */
+}
+
+/* 底線初始狀態 */
+.menu > ul > li > a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    background-color: #9aa1bd;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+/* 滑鼠移上去時底線往兩邊展開 */
+.menu > ul > li > a:hover::after {
+    width: 100%;
+}
+
+
+
+
+
+/* 下拉選單樣式 */
+.dropdown {
+    position: absolute;
+    top: 70px; 
+    left: 50%;
+    transform: translateX(-50%) translateY(15px); 
+    background-color: #ffffff;
+    min-width: 350px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 2000;
+    border-top: 3px solid #9aa1bd; 
+}
+
+/* 滑鼠移到 玄關門系列 顯示選單 */
+.menu li:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); 
+}
+
+/* 下拉選單佈局 */
+.dropdown-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 2px 15px;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-direction: column !important;
+}
+
+.dropdown-grid li {
+    display: block;
+}
+
+.dropdown-grid a {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #415060 !important; /* 下拉選單字變深色 */
+    font-size: 14px !important;
+    font-weight: 430 !important;
+    text-decoration: none;
+    display: block;
+    padding: 4px 5px;
+    display: block;
+    white-space: nowrap; /* 防止字體斷行 */
+}
+
+.dropdown-grid a::after {
+    display: none; /* 下拉選單裡面的小字不需要底線動畫 */
+}
+
+.dropdown-grid a:hover {
+    color: #9aa1bd !important;
+    padding-left: 5px; 
+}

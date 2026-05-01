@@ -308,7 +308,7 @@ function updateVisual() {
     colorNameDisplay.innerText = currentColor;
     patternNameDisplay.innerText = currentPattern;    
     // 拼湊檔名並換掉圖片
-    doorImage.src = `../樣品圖/A系列/${currentColor}_${currentPattern}.png`;
+    doorImage.src = `../images/樣品圖/A系列/${currentColor}_${currentPattern}.png`;
 }
 
 // 顏色圈圈點擊

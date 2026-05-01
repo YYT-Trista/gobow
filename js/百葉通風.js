@@ -162,7 +162,7 @@ function updateVisual() {
     patternNameDisplay.innerText = currentPattern;    
     
     // 2. 拼湊檔名並換掉圖片
-    doorImage.src = `../樣品圖/百葉通風/${currentPattern}.jpg`;
+    doorImage.src = `../images/樣品圖/百葉通風/${currentPattern}.jpg`;
 
     // 3. 更新專屬說明文字
     if (patternSpecs[currentPattern]) {

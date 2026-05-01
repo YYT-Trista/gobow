@@ -1,0 +1,761 @@
+/* --- 1. 全域重置 --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #ffffff;
+    font-family: 'Noto Serif TC', 'Noto Sans TC', serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- 2. 固定頭部 --- */
+.mainheader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    background-color: #607892;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 3000;
+}
+
+.logo h1 {
+    font-weight: 600;
+    font-size: 30px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logo h1:hover {
+    opacity: 0.8;
+}
+
+/* --- 3. 導覽列選單 --- */
+.menu ul {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+    align-items: center;
+}
+
+.menu > ul > li {
+    position: relative; 
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
+
+.menu > ul > li > a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 450;
+    font-size: 15.5px;
+    letter-spacing: 1.5px;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+    position: relative;
+    display: block;
+}
+
+.menu > ul > li > a:hover {
+    color: #9aa1bd;
+}
+
+.menu > ul > li > a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    background-color: #9aa1bd;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.menu > ul > li > a:hover::after {
+    width: 100%;
+}
+
+/* --- 下拉選單 --- */
+.dropdown {
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+    background-color: #ffffff;
+    min-width: 380px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 2000;
+    border-top: 3px solid #9aa1bd;
+}
+
+.menu li:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 5px 20px;
+    list-style: none !important;
+}
+
+.dropdown-grid a {
+    color: #415060 !important;
+    font-size: 14px !important;
+    text-decoration: none;
+    padding: 6px 5px;
+    display: block;
+    white-space: nowrap;
+}
+
+.dropdown-grid a:hover {
+    color: #9aa1bd !important;
+}
+
+
+
+/*======================*/
+/* abc.css */
+/* --- 4. Banner 區域 --- */
+.banner-wrapper {
+    margin-top: 75px; 
+    width: 100%;      
+    background-color: #ffffff;
+}
+
+.banner-wrapper img {
+    width: 100%;      
+    display: block;   
+    height: auto;     
+}
+
+/* --- 5. 篩選按鈕列 --- */
+.filter-container {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    position: sticky;
+    top: 75px;
+    z-index: 1000;
+}
+
+.filter-btn {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    color: #444444;
+    padding: 8px 25px;
+    margin: 5px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.filter-btn.active {
+    background-color: #333333;
+    color: #ffffff !important;
+    border-color: #333333;
+}
+
+/* --- 6. 產品列表網格核心 --- */
+.category-title {
+    text-align: center;
+    font-size: 26px;
+    margin: 40px 0 20px 0;
+    letter-spacing: 1px;
+}
+
+/* 預設容器 */
+.color-grid {
+    display: grid;
+    gap: 30px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+    justify-content: center;
+}
+
+/* --- 砂面漆、顆粒漆、手工漆：置中 + 橫向滑動 --- */
+.grid-sand, .grid-particle, .grid-hand {
+    display: grid !important;
+    grid-auto-flow: column;      /* 強制併排在同一行 */
+    grid-auto-columns: 160px;    /* 每項固定寬度 */
+    gap: 30px;                   /* 項目間距 */
+    
+    overflow-x: auto;            /* 允許橫滑 */
+    -webkit-overflow-scrolling: touch; /* 手機滑動流暢度 */
+    
+    /* 關鍵：當內容寬度小於螢幕時置中，大於螢幕時自動靠左允許滑動 */
+    justify-content: center;      
+    
+    /* 修正：確保在滑動時左邊不會被裁切 */
+    padding: 0 20px 20px 20px;
+    width: 100%;
+}
+/* 特殊手工漆：固定 5 個一行，置中 */
+.grid-special-hand {
+    display: grid !important;
+    grid-template-columns: repeat(5, 160px) !important;
+    max-width: 950px;
+    justify-content: center;
+}
+
+/* 1. 德基門鎖：修正置中問題 */
+[data-type=德基門鎖] .color-grid { 
+    display: grid !important;
+    /* 這裡使用 repeat(5, 250px) 確保五個一排，並透過 justify-content 置中 */
+    grid-template-columns: repeat(5, 250px); 
+    justify-content: center; /* 這是置中的關鍵 */
+    gap: 30px;
+    padding-bottom: 15px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* 針對德基門鎖，若螢幕太窄（例如平板）會擠壓，加入自動溢出滑動 */
+@media (max-width: 1280px) {
+    [data-type=德基門鎖] .color-grid {
+        justify-content: flex-start; /* 寬度不足時改回靠左，才不會導致左邊內容被切掉 */
+        overflow-x: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+[data-type=德基門鎖] .color-item { 
+    width: 250px; 
+}
+/* 2. APD、COE 門鎖：四個一排，置中 */
+[data-type=APD門鎖、COE門鎖] .color-grid { 
+    grid-template-columns: repeat(4, 280px); 
+    justify-content: center;
+}
+[data-type=APD門鎖、COE門鎖] .color-item { 
+    width: 280px; 
+}
+
+/* 3. YALE 電子鎖：三個一排，置中 */
+[data-type=YALE電子鎖] .color-grid { 
+    grid-template-columns: repeat(3, 380px); 
+    gap: 30px;
+    justify-content: center;
+}
+[data-type=YALE電子鎖] .color-item { 
+    width: 380px; 
+}
+
+/* 4. DORM, COMMAX, APD 電子鎖：兩個一排，置中 */
+[data-type=DORM電子鎖、COMMAX電子鎖、APD電子鎖] .color-grid { 
+    grid-template-columns: repeat(2, 430px); 
+    gap: 40px;
+    justify-content: center;
+}
+[data-type=DORM電子鎖、COMMAX電子鎖、APD電子鎖] .color-item { 
+    width: 430px; 
+}
+
+/* 5. 安住電子鎖：兩個一排，置中 */
+[data-type=安住電子鎖] .color-grid { 
+    grid-template-columns: repeat(2, 430px); 
+    gap: 40px;
+    justify-content: center;
+}
+[data-type=安住電子鎖] .color-item { 
+    width: 430px; 
+}
+
+/* 6. LANCA & 其他：全寬 */
+[data-type="LANCA電子鎖、配件&大把手"] .color-grid { 
+    grid-template-columns: 1fr; 
+    width: 100%;
+    max-width: 1200px;
+}
+[data-type="LANCA電子鎖、配件&大把手"] .color-item { 
+    width: 100%; 
+}
+
+/* 其他門花系列 */
+[data-type=D、F系列] .color-grid { grid-template-columns: repeat(4, 250px); justify-content: center;}
+[data-type=小視窗門花] .color-grid { grid-template-columns: repeat(10, 120px); gap: 10px; justify-content: center;}
+[data-type=開天門花] .color-grid { grid-template-columns: repeat(3, 320px); gap: 40px; justify-content: center;}
+
+/* --- 響應式微調 (手機版) --- */
+@media (max-width: 768px) {
+    .color-grid {
+        /* 手機版若不強制橫移，則改回自動換行 */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+        grid-auto-flow: row; 
+    }
+    
+    .color-item {
+        width: 100% !important;
+    }
+
+    /* 德基門鎖在手機維持橫向滑動 */
+    [data-type=德基門鎖] .color-grid {
+        grid-auto-flow: column !important;
+        overflow-x: scroll;
+    }
+}
+
+/* 項目共通樣式 */
+.color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* 圖片樣式 */
+.img-wrapper {
+    width: 140px; height: 140px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+.img-wrapper:hover { transform: scale(1.1); }
+
+.img-wrapper2, .img-wrapper3 {
+    width: 100%; height: auto; 
+    margin-bottom: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    overflow: hidden;
+    background-color: #fff;
+}
+.img-wrapper2 img, .img-wrapper3 img {
+    width: 100%; height: auto;
+    display: block;
+    transition: transform 0.3s;
+}
+.img-wrapper2:hover img, .img-wrapper3:hover img { transform: scale(1.1); }
+
+.color-name {
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px; 
+    margin-top: 10px;
+    color: #333;
+    width: 100%;
+}
+
+/* --- 7. 篩選與頁腳 --- */
+.filter-section { display: none; }
+.filter-section.active { display: block; }
+
+/* 最下面 */
+.main-footer {
+    background-color: #607892; 
+    color: #ffffff;
+    padding: 40px 5% 20px;
+    font-family: 'Noto Sans TC', sans-serif;
+    margin-top: 100px;
+}
+
+.main-footer a {
+    color: inherit !important; 
+    text-decoration: none !important; /* 移除底線 */
+    transition: 0.3s;
+}
+
+.main-footer a:hover {
+    color: #9aa1bd !important; 
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    gap: 50px;
+}
+
+/* 品牌名稱 */
+.footer-logo {
+    font-family: 'Noto Serif TC', serif; 
+    font-size: 27px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+}
+
+/* 社群連結的小圈圈 */
+.footer-social a {
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.footer-social a:hover {
+    background: #a6abbe; 
+}
+
+/* 資訊 */
+.footer-info h3, .footer-time h3 {
+    font-family: 'Noto Serif TC', serif; 
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: 650;
+    letter-spacing: 2px;
+}
+
+.footer-info p, .footer-time p {
+    font-family: 'Noto Serif TC', serif; 
+    font-size: 15px;
+    color: #ced4da;
+    line-height: 1.8;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* 版權宣告 */
+.footer-copyright {
+    max-width: 1400px;
+    margin: 30px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+.footer-copyright p {
+    font-size: 12px;
+    color: #88929b;
+}
+
+
+/* 基礎表格容器：確保在手機上也能橫向滾動 */
+.inventory-container {
+    width: 100%;
+    overflow-x: auto;
+    font-family: "Microsoft JhengHei", sans-serif;
+}
+
+/* 表格樣式 */
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+    text-align: left;
+}
+
+/* 標題列 */
+.inventory-table th {
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 12px;
+    white-space: nowrap;
+}
+
+/* 資料列與間隔色 */
+.inventory-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.inventory-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* 價格樣式：強調出清價 */
+.price-tag {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* 狀態標籤：已售出 (SOLD) */
+.status-sold {
+    background-color: #95a5a6;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* 尺寸與規格：等寬字體方便對齊數字 */
+.specs {
+    font-family: "Courier New", monospace;
+    color: #555;
+}
+
+/* 備註欄：縮小字體以容納更多描述 */
+.note-text {
+    font-size: 12px;
+    color: #7f8c8d;
+    max-width: 200px;
+}
+/* abc.css */
+/*======================*/
+
+
+
+
+/*======================*/
+/* def.css */
+/* def.css - 展示出清專用樣式表 (優化間距 + 右上角關閉版) */
+
+:root {
+    --primary-dark: #1a1a1a;
+    --bg-light: #fcfcfc;
+    --text-deep-gray: #444444;
+    --overlay-bg: rgba(0, 0, 0, 0.8);
+    --radius-main: 8px;
+    --accent-red: #c9302c;
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    margin: 0;
+    background-color: var(--bg-light);
+    color: var(--primary-dark);
+}
+
+.banner-wrapper img {
+    width: 100%;
+    display: block;
+}
+
+/* --- 商品展示區 --- */
+.main-content-area {
+    padding: 60px 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 60px 40px;          
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+/* --- 卡片容器 --- */
+.photo-container {
+    background: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: var(--radius-main);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #efefef;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.photo-container:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* --- 預覽照片 --- */
+.photo-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* --- 預覽文字框 --- */
+.photo-info {
+    text-align: center;
+    padding: 12px 5px;
+    background: #fff;
+}
+
+.photo-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--primary-dark);
+}
+
+/* --- 彈窗樣式 --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--overlay-bg);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    width: 95%;
+    max-width: 850px;
+    border-radius: 12px;
+    position: relative; /* 必備：讓叉叉相對此框定位 */
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+/* 新增：右上角叉叉按鈕 */
+.close-modal {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    line-height: 1;
+    color: #999;
+    cursor: pointer;
+    z-index: 10010;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+}
+
+.close-modal:hover {
+    background-color: #f5f5f5;
+    color: var(--primary-dark);
+}
+
+.modal-header {
+    padding: 18px 50px; /* 增加左右 padding 避免撞到叉叉 */
+    background: #fff;
+    color: var(--primary-dark);
+    font-weight: 700;
+    text-align: center;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.modal-left {
+    flex: 1.2;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-left img {
+    max-width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+}
+
+.modal-right {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    line-height: 1.8;
+    background: #fafafa;
+    border-left: 1px solid #f0f0f0;
+    font-size: 0.95rem;
+    color: var(--text-deep-gray);
+}
+
+/* --- 響應式調整 --- */
+@media (max-width: 1024px) {
+    .main-content-area {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content-area {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 15px;
+    }
+    .modal-body {
+        flex-direction: column;
+    }
+    .modal-right {
+        border-left: none;
+        border-top: 1px solid #f0f0f0;
+        padding: 20px;
+    }
+    .close-modal {
+        top: 8px;
+        right: 8px;
+        background: rgba(255, 255, 255, 0.8); /* 手機版增加背景確保看清 */
+        width: 32px;
+        height: 32px;
+        font-size: 26px;
+    }
+}
+
+/* --- 已售出樣式 --- */
+.photo-container.sold-out {
+    position: relative;
+    border: 1px solid #e0e0e0;
+    overflow: hidden; 
+}
+
+.photo-container.sold-out::after {
+    content: "SOLD OUT";
+    position: absolute;
+    top: 18px;
+    right: -28px;
+    background-color: var(--accent-red);
+    color: white;
+    padding: 4px 35px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transform: rotate(45deg);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 2;
+    letter-spacing: 1px;
+}
+
+.photo-container.sold-out .photo-info p {
+    color: #888;
+}
+
+.photo-container.sold-out .photo-info p::after {
+    content: " (已售出)";
+    color: var(--accent-red);
+    font-size: 0.85rem;
+    font-weight: bold;
+}

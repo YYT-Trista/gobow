@@ -1,4 +1,4 @@
-/*style.css 的部分*/
+/*doors.css 的部分*/
 /* 從這邊開始 */
 .mainheader {
     position: fixed;
@@ -316,6 +316,7 @@
     overflow-y: auto;     
 }
 
+/* 左下_科技實木 */
 .left_box_bottom_wood {
     margin-top: 5px;
     background-color: #ffffff; 
@@ -325,10 +326,23 @@
     border-radius: 20px; 
     text-align: center; 
     box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.044);
-    max-height: 395px;    /* 格子最大高度 */
-    overflow-y: auto;     /* 長度超過的話可以變成捲軸滾動的方式 */
+    max-height: 395px;  
+    overflow-y: auto;    
 }
 
+/* 左下_碳纖維防爆 */
+.left_box_bottom_boom {
+    margin-top: 5px;
+    background-color: #ffffff; 
+    width: 100%;           
+    box-sizing: border-box; 
+    padding: 20px 50px;
+    border-radius: 20px; 
+    text-align: center; 
+    box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.044);
+    max-height: 245px;   
+    overflow-y: auto;  
+}
 
 /* 右邊格子 */
 /* 右上 */
@@ -549,3 +563,99 @@ body{
     display: flex;
     justify-content: center;
 }
+
+
+
+
+/*===================*/
+/* footer */
+/* 最下面 */
+.main-footer {
+    background-color: #607892; 
+    color: #ffffff;
+    padding: 40px 5% 20px;
+    font-family: 'Noto Sans TC', sans-serif;
+    margin-top: 100px;
+}
+
+.main-footer a {
+    color: inherit !important; 
+    text-decoration: none !important; /* 移除底線 */
+    transition: 0.3s;
+}
+
+.main-footer a:hover {
+    color: #9aa1bd !important; 
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    gap: 50px;
+}
+
+/* 品牌名稱 */
+.footer-logo {
+    font-family: 'Noto Serif TC', serif; 
+    font-size: 27px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+}
+
+/* 社群連結的小圈圈 */
+.footer-social a {
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.footer-social a:hover {
+    background: #a6abbe; 
+}
+
+/* 資訊 */
+.footer-info h3, .footer-time h3 {
+    font-family: 'Noto Serif TC', serif; 
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: 650;
+    letter-spacing: 2px;
+}
+
+.footer-info p, .footer-time p {
+    font-family: 'Noto Serif TC', serif; 
+    font-size: 15px;
+    color: #ced4da;
+    line-height: 1.8;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* 版權宣告 */
+.footer-copyright {
+    max-width: 1400px;
+    margin: 30px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+.footer-copyright p {
+    font-size: 12px;
+    color: #88929b;
+}
+
+

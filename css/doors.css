@@ -1,0 +1,1015 @@
+
+body {
+    margin: 0;
+    padding-top: 70px; 
+    background-color: #f5f5f5; 
+}
+
+.mainheader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    background-color: #607892;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.logo h1 {
+    font-weight: 600;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 30px;
+    letter-spacing: 4px;
+    cursor: pointer;
+}
+
+.logo h1:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.menu ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 35px;
+    align-items: center;
+}
+
+.menu > ul > li {
+    position: relative; /* 下拉選單定位基準 */
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.menu > ul > li > a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 450;
+    font-size: 15.5px;
+    letter-spacing: 1.5px;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+    position: relative;
+    display: block;
+}
+
+.menu > ul > li > a:hover {
+    color: #9aa1bd; /* 移上去變成深藍色 */
+}
+
+/* 底線初始狀態 */
+.menu > ul > li > a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    background-color: #9aa1bd;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+/* 滑鼠移上去時底線往兩邊展開 */
+.menu > ul > li > a:hover::after {
+    width: 100%;
+}
+
+
+
+
+
+/* 下拉選單樣式 */
+.dropdown {
+    position: absolute;
+    top: 70px; 
+    left: 50%;
+    transform: translateX(-50%) translateY(15px); 
+    background-color: #ffffff;
+    min-width: 350px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 2000;
+    border-top: 3px solid #9aa1bd; 
+}
+
+/* 滑鼠移到 玄關門系列 顯示選單 */
+.menu li:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); 
+}
+
+/* 下拉選單佈局 */
+.dropdown-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 2px 15px;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-direction: column !important;
+}
+
+.dropdown-grid li {
+    display: block;
+}
+
+.dropdown-grid a {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #415060 !important; /* 下拉選單字變深色 */
+    font-size: 14px !important;
+    font-weight: 430 !important;
+    text-decoration: none;
+    display: block;
+    padding: 4px 5px;
+    display: block;
+    white-space: nowrap; /* 防止字體斷行 */
+}
+
+.dropdown-grid a::after {
+    display: none; /* 下拉選單裡面的小字不需要底線動畫 */
+}
+
+.dropdown-grid a:hover {
+    color: #9aa1bd !important;
+    padding-left: 5px; 
+}
+
+
+
+
+/* 輪播圖 */
+.slider {
+    width: 100%;
+    height: 500px; /* 高度 */
+    position: relative;
+    overflow: hidden;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    position: absolute; /* 三張圖疊在一起 */
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;      /* 預設先隱藏 */
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide1 { background-image: url('../images/d1.jpg'); animation-delay: 0s; }
+.slide2 { background-image: url('../images/d2.jpg'); animation-delay: 3s; }   /* 延遲3秒出現 */
+.slide3 { background-image: url('../images/d3.jpg'); animation-delay: 6s; }   /*     6秒    */
+.slide4 { background-image: url('../images/d4.jpg'); animation-delay: 9s; }   /*     9秒    */
+.slide5 { background-image: url('../images/d5.jpg'); animation-delay: 12s; }  /*    12秒    */
+
+@keyframes auto-play {
+    0% { opacity: 0; }
+    10% { opacity: 1; }  /* 剛開始顯示 */
+    30% { opacity: 1; }  /* 持續顯示一段時間 */
+    40% { opacity: 0; }  /* 慢慢消失 */
+    100% { opacity: 0; }
+}
+
+
+
+
+.arrow {
+    position: absolute;
+    top: 50%;  /* 放在垂直中間 */
+    transform: translateY(-50%);
+    font-size: 20px;  /* 箭頭大小 */
+    padding: 12px 16px;
+    color: rgba(255,255,255,0.8);  /* 箭頭顏色 */
+    background-color: rgba(0, 0, 0, 0.2);  /* 半透明黑底 */
+    padding: 10px 20px;
+    cursor: pointer;    
+    z-index: 100;  /* 確保在照片上 */
+    user-select: none;  
+    transition: all 0.3s ease;
+    border-radius: 50%;
+
+}
+
+.arrow:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);  /* 滑鼠移上去顏色深一點 */
+}
+
+.prev { left: 25px; }
+.next { right: 25px; }
+
+/* 分別設定左邊和右邊的位置 */
+.prev {
+    left: 20px;
+    border-radius: 0 5px 5px 0;
+}
+
+.next {
+    right: 20px;
+    border-radius: 5px 0 0 5px;
+}
+
+.dots-container {
+    position: absolute;
+    bottom: 20px;  /* 距離底部20px */
+    width: 100%;
+    text-align: center;  /* 讓點點置中 */
+    z-index: 100;
+}
+
+/* 點點本人 */
+.dot {
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: rgba(255, 255, 255, 0.5);  /* 沒選到時是半透明白 */
+    border-radius: 50%;  /* 變圓形 */
+    display: inline-block;
+    transition: 0.3s;
+}
+
+/* 被選中的點點樣式 */
+.dot.active, .dot:hover {
+    background-color: #ffffff;  /* 選到時變全白 */
+    transform: scale(1.3);  /* 稍微放大一點 */
+}
+
+
+
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    color: #415060;
+    margin: 60px 0 40px;
+    letter-spacing: 3px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    row-gap: 60px;
+    column-gap: 55px;
+    padding: 0 7% 80px;
+}
+
+.product-grid .product-card {
+    position: relative;
+    text-decoration: none; /* 移除連結下劃線 */
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+    
+}
+
+.product-card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transform: translateY(-8px);
+    
+}
+
+/* 產品圖片 */
+.product-image {
+    width: 100%;
+    aspect-ratio: 18/9;
+    background-color: #f0f0f0;  /* 沒圖片時底色 */
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s ease;
+}
+
+/* 照片上遮罩層與文字 */
+.product-grid .product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    transition: background-color 0.3s ease;
+}
+
+/* 產品文字 */
+.product-grid .grid-label {
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 8px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    padding: 20px;
+    text-align: center;
+    position: relative; 
+    z-index: 10; 
+}
+
+.product-grid .product-card:hover .product-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.img0 { background-image: url('../images/s0.jpg'); }
+.img1 { background-image: url('../images/s1.jpg'); }
+.img2 { background-image: url('../images/s2.jpg'); }
+.img3 { background-image: url('../images/s3.jpg'); }
+.img4 { background-image: url('../images/s4.jpg'); }
+.img5 { background-image: url('../images/s5.jpg'); }
+.img6 { background-image: url('../images/s6.jpg'); }
+.img7 { background-image: url('../images/s7.jpg'); }
+.img8 { background-image: url('../images/s8.jpg'); }
+.img9 { background-image: url('../images/s9.jpg'); }
+.img10 { background-image: url('../images/s10.jpg'); }
+.img11 { background-image: url('../images/s11.jpg'); }
+.img12 { background-image: url('../images/s12.jpg'); }
+.img13 { background-image: url('../images/s13.jpg'); }
+
+
+/* 最下面 */
+.main-footer {
+    background-color: #607892; 
+    color: #ffffff;
+    padding: 40px 5% 20px;
+    font-family: 'Noto Sans TC', sans-serif;
+    margin-top: 100px;
+}
+
+.main-footer a {
+    color: inherit !important; 
+    text-decoration: none !important; /* 移除底線 */
+    transition: 0.3s;
+}
+
+.main-footer a:hover {
+    color: #9aa1bd !important; 
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    gap: 50px;
+}
+
+/* 品牌名稱 */
+.footer-logo {
+    font-family: 'Noto Serif TC', serif; 
+    font-size: 27px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+}
+
+/* 社群連結的小圈圈 */
+.footer-social a {
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.footer-social a:hover {
+    background: #a6abbe; 
+}
+
+/* 資訊 */
+.footer-info h3, .footer-time h3 {
+    font-family: 'Noto Serif TC', serif; 
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: 650;
+    letter-spacing: 2px;
+}
+
+.footer-info p, .footer-time p {
+    font-family: 'Noto Serif TC', serif; 
+    font-size: 15px;
+    color: #ced4da;
+    line-height: 1.8;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* 版權宣告 */
+.footer-copyright {
+    max-width: 1400px;
+    margin: 30px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+.footer-copyright p {
+    font-size: 12px;
+    color: #88929b;
+}
+
+
+
+
+
+
+
+
+
+
+/* About */
+
+/* 品牌形象圖 */
+.about-hero {
+    height: 85vh;
+    width: 90%;
+    background: url('../images/abt.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right:30%;
+    text-align: right;
+    color:#34404b;
+    margin-top: 5px; /* 避開固定導覽列 */
+    padding: 0 5%;
+}
+
+
+.hero-text h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 40px;
+    letter-spacing: 7px;
+    margin-bottom: 15px;
+}
+
+.hero-text p {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 17px !important;
+    letter-spacing: 3px;
+    opacity: 0.95;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+
+
+/* 針對原本下面的 About Story 區塊做個簡單修正 */
+.about-story {
+    padding: 80px 10%;
+}
+
+/* 3. 清除浮動 (關鍵，防止下方區塊排版亂掉) */
+.about-content::after {
+    content: '';
+    display: block;
+    clear: both;            /* 🌟 強制清除 float */
+}
+
+.story-text {
+    /* 這裡可以維持原本的樣式，但不需要 flex 了 */
+    display: block !important; 
+    overflow: hidden; /* 防止文字溢出，幫助清除浮動 */
+}
+
+/* 稍微縮小一下三大優勢的間距，讓整體更緊湊 */
+.features {
+    margin-top: 50px;
+}
+
+
+
+
+
+
+
+/* 品牌故事*/
+.about-story {
+    padding: 100px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.story-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.story-image {
+    flex: 1;
+}
+
+.story-image img {
+    width: 92%;
+    border-radius: 2px;
+    box-shadow: 20px 20px 0px #f0f0f0; /* 裝飾性色塊陰影 */
+    padding: 10px;
+}
+
+.story-info {
+    flex: 1;
+}
+
+.story-info .sub-title {
+    color: #9aa1bd;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.story-info h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 32px;
+    color: #34404b;
+    margin: 10px 0 20px;
+}
+
+.story-info .line {
+    width: 50px;
+    height: 2px;
+    background: #9aa1bd;
+    margin-bottom: 30px;
+}
+
+.story-info p {
+    line-height: 2;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: justify;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+}
+
+/* 核心優勢 */
+.about-features {
+    background-color: #f9f9f9;
+    padding: 80px 7%;
+}
+
+.feature-box {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    /*grid-template-columns: repeat(4, 1fr);*/
+    gap: 35px;
+}
+
+.feat-item {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.feat-item h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 24px;
+    letter-spacing: 1px;
+    color: #34404b;
+    margin-bottom: 15px;
+    /*position: relative;*/
+}
+
+.feat-item h3::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: #9aa1bd;
+    margin: 10px auto 0;
+}
+
+.feat-item p {
+    color: #888;
+    line-height: 1.6;
+    font-size: 15px;
+    letter-spacing: 0.7px;
+}
+
+.feat-img {
+    width: 100px;          /* 🌟 設定圖片寬度 */
+    height: 100px;         /* 🌟 設定圖片高度 */
+    margin: 0 auto 20px;  /* 居中並與下方標題留間距 */
+    overflow: hidden;
+    background-color: #f8f9fa; /* 圖片載入前的底色 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feat-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    /* 🌟 確保圖片填滿圓框且不變形 */
+    transition: 0.3s;
+}
+
+
+
+
+
+
+/* FAQ 頁面標題區 */
+.faq-header {
+    text-align: center;
+    padding: 60px 5% 60px;
+    background-color:#607892; /*#9fa5ad;*/
+    margin-top: 0px;
+}
+
+.faq-header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 43px;
+    color: #E5E7EB;
+    letter-spacing: 11px;
+}
+
+/* FAQ 容器 */
+.faq-container {
+    max-width: 800px;
+    margin: 50px auto 100px;
+    padding: 0 5%;
+}
+
+.faq-item {
+    /* 🌟 把顏色加深 (從 #eee 改成 #ccc)，並把 1px 改成 2px */
+    border-bottom: 1.5px solid #c7d0da; 
+    margin-bottom: 5px;
+    transition: 0.3s;
+}
+
+.faq-item:hover {
+    border-bottom-color: #9aa1bd; 
+}
+
+
+
+/* 問題按鈕樣式 */
+.faq-question {
+    width: 100%;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #444;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.faq-question:hover {
+    color: #9aa1bd;
+}
+
+/* 加上一個小箭頭或加號符號 */
+.faq-question::after {
+    content: '+';
+    font-size: 22px;
+    color: #9aa1bd;
+}
+
+/* 答案區塊樣式 (預設隱藏) */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease; /* 🌟 展開動畫 */
+    background-color: #fff;
+}
+
+.faq-answer p {
+    padding: 0 0 20px 0;
+    line-height: 1.8;
+    color: #666;
+    font-size: 14.5px;
+}
+
+
+/* 1. 讓答案不要靠邊框太近 */
+.answer-content {
+    padding: 30px 30px 20px 30px; /* 上 10, 右 30, 下 30, 左 30 */
+    line-height: 1.8;
+    color: #666;
+    font-size: 15px;
+}
+
+/* 2. 針對「一點一行」的清單樣式 */
+.answer-content ul {
+    margin-top: 10px;
+    padding-left: 20px; /* 讓點點往右縮進一點 */
+    list-style-type: disc; /* 使用實心圓點 */
+}
+
+.answer-content li {
+    margin-bottom: 10px; /* 每一行之間留一點距離，不要擠在一起 */
+    padding-left: 5px;
+}
+
+
+
+/* 當啟動展開後的樣式 */
+.faq-item.active .faq-answer {
+    max-height: 300px; /* 根據文字長度調整 */
+}
+
+.faq-item.active .faq-question::after {
+    content: '-';
+}
+
+
+.faq-nav-buttons {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+}
+
+/* 按鈕樣式 */
+.faq-btn {
+    padding: 9px 19px;
+    background-color:#FAF9F7;
+    color: #34404b;
+    border: 2px solid #FAF9F7;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    font-weight: 550;
+    transition: 0.3s;
+}
+
+.faq-btn:hover {
+    background-color: #A7B1B7;
+    color: #ffffff;
+}
+
+/* 問題組別大標題 */
+.faq-group-title {
+    font-size: 28px;
+    font-weight: 670;
+    letter-spacing: 1.5px;
+    font-family: 'Noto Serif TC', serif;
+    color: #34404b;
+    margin: 60px 0 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #9aa1bd;
+    /* 🌟 重要：防止跳轉後被 Header 擋住 (假設 Header 高 70px) */
+    scroll-margin-top: 100px; 
+}
+
+/* 讓網頁捲動變得平滑 (像飛過去一樣) */
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+
+
+
+
+
+
+
+/* 聯絡我們 Hero */
+.contact-hero {
+    padding: 100px 5% 50px;
+    background-color: #34404b;
+    color: #fff;
+    text-align: center;
+    margin-top: 70px;
+}
+
+/* 聯絡區域容器 */
+.contact-container {
+    max-width: 1200px;
+    margin: 60px auto 100px;
+    padding: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    gap: 80px; /* 左右兩欄的間距 */
+    align-items: flex-start;
+}
+
+/* 左側資訊欄 */
+.contact-info {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.contact-info h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #34404b;
+    letter-spacing: 2px;
+}
+
+.info-details h3 {
+    font-size: 17px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.info-details p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.info-details a {
+    color: inherit;          /* 繼承原本 <p> 標籤的顏色 (#333) */
+    text-decoration: none;   /* 移除底線 */
+    display: inline-block;   /* 讓點擊範圍更準確 */
+    transition: 0.2s;        /* 增加一點點變色動畫 */
+}
+
+
+.line-separator {
+    height: 1px;
+    background: #ddd;
+    margin-bottom: 40px;
+}
+
+/* 門市小標題 */
+.sub-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: #34404b;
+    margin-bottom: 30px;
+    text-align: left;
+    display: flex;
+    align-items: baseline; /* 讓不同大小的文字底部對齊 */
+    gap: 10px;
+}
+
+.sub-hint {
+    font-size: 13px;       /* 字體縮小 */
+    color: #7d7d7d;           /* 顏色變淡，才不會搶走主標題的視覺 */
+    font-weight: normal;   /* 變成細體 */
+    letter-spacing: 0.5px;   /* 讓提示文字不要太散 */
+}
+
+
+/* 右側表單欄 */
+.contact-form {
+    flex: 1.2;
+    background: #fdfdfd;
+    padding: 25px 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.contact-form h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #34404b;
+    letter-spacing: 2px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 16px;
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 650;
+    letter-spacing: 1.5px;
+    color: #333333;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+/* 提交按鈕樣式 */
+.submit-btn {
+    width: 106%;
+    padding: 17px;
+    background-color: #768da2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #232d36;
+}
+
+
+.contact-left {
+    /* 🌟 從原本的 flex: 2 改成 flex: 3 或更高，這會讓它吃掉更多剩餘空間 */
+    flex: 3; 
+}
+
+
+.contact-right {
+    flex: 0 0 450px; /* 固定寬度，不讓表單隨意伸縮 */
+    position: sticky;
+    top: 100px;
+    margin-left: 35px;
+}
+
+
+
+
+/* 🌟 核心：三排網格設定 */
+.store-grid {
+    display: grid;
+    /* 這裡的意思是：重複 3 次，寬度平分 (1fr) */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 25px; /* 卡片之間的間距 */
+}
+
+/* 門市卡片樣式 */
+.store-card {
+    background-color:#cdcdce /*#e4e8eb;*/;
+    padding: 14px 35px;
+    border: 1px solid #e4e8eb;
+    border-radius: 8px;
+}
+
+.store-card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    /*border-color: #9aa1bd; */
+    transform: translateY(-4px); /* 往上飄一點的小效果 */
+}
+
+
+.store-card a {
+    color: inherit;          /* 繼承原本 <p> 標籤的顏色 (#333) */
+    text-decoration: none;   /* 移除底線 */
+    display: inline-block;   /* 讓點擊範圍更準確 */
+    transition: 0.2s;        /* 增加一點點變色動畫 */
+}
+
+.store-card a:hover {
+    color: #555;             /* 稍微變色，提醒使用者這是可以點的 */
+    text-decoration: underline; /* 或者這時候才出現底線 */
+}
+
+.store-card h3 {
+    color: #555;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.store-card p {
+    font-size: 13px;
+    color:#333;
+    white-space: nowrap;
+}

@@ -151,7 +151,7 @@ function updateVisual() {
     patternNameDisplay.innerText = currentPattern;    
     
     // 拼湊檔名並換掉圖片
-    doorImage.src = `../樣品圖/雙視窗/${currentPattern}.jpg`;
+    doorImage.src = `../images/樣品圖/雙視窗/${currentPattern}.jpg`;
 
     // 更新專屬說明文字
     if (patternSpecs[currentPattern]) {
